@@ -18,6 +18,13 @@ nightly job commits a meaningless diff every single night:
   2. Repositories are filtered to public only. A personal token sees
      private repos and the workflow's token does not, so without the
      filter the language percentages disagree depending on who ran it.
+
+Given a fixed token this is deterministic -- two consecutive runs are
+byte-identical. Across tokens it is not, and cannot be: measured here,
+the workflow's token and the owner's own token report the same yearly
+total but disagree on a few individual days, which is enough to move the
+sparkline and reshuffle the year's ramp. So let the Action own these four
+files. Regenerating them locally only starts a fight it will win nightly.
 """
 import bisect
 import datetime as dt
